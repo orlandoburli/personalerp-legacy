@@ -1,0 +1,683 @@
+html {
+	font-size: 16px;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url(../fonts/OpenSans-Light.ttf);
+}
+
+body {
+	background-color: #EBEAE8;
+	font-family: 'Open Sans';
+	font-weight: 100;
+	margin: 0px;
+}
+
+input, label, select {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 100;
+}
+
+input[type="text"], input[type="password"] {
+	font-size: .8rem !important;
+}
+
+input[type="text"]:focus, input[type="password"]:focus  {
+	/* Acho q nao vou fazer nada aqui... */
+	background-color: #ffffcc;
+}
+
+label {
+	font-size: 1rem;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 100;
+}
+
+select {
+	font-size: 1rem;
+	/*-webkit-appearance: none;*/
+}
+
+p {
+	margin: 0px;
+}
+
+button {
+	background-color: #3671A4;
+	color: #FFFFFF;
+	font-size: .8rem;
+
+	padding: 15px 25px 15px 25px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	border-style: none;
+
+	text-transform: uppercase;
+}
+
+button:hover {
+	background-color: #4B6139;
+}
+
+button:active {
+	-moz-box-shadow:inset 2px 2px 5px #000000;
+	-webkit-box-shadow:inset 2px 2px 5px #000000;
+	box-shadow:inset 2px 2px 5px #000000;
+}
+
+#content-all {
+	margin: 0px;
+}
+
+/* Logo do sistema */
+#content-logo {
+	width: 300px;
+	margin: 10px 10px;
+	clear: both;
+}
+
+/* Imagem da logo */
+#div-logo {
+	background-image: url(../img/logo.png);
+	width: 70px;
+	height: 70px;
+
+	float: left;
+
+	/* Box-shadow */
+	-webkit-box-shadow: 5px 5px 7px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    5px 5px 7px rgba(50, 50, 50, 0.5);
+	box-shadow:         5px 5px 7px rgba(50, 50, 50, 0.5);
+}
+
+/* Parágrafos da logo */
+#info-logo {
+	width: 200px;
+	float: right;
+
+	/*border-right: inset 1px #999999;*/
+}
+#info-logo p {
+	margin: 0px;
+	font-size: 14px;
+}
+
+#info-logo p:nth-child(3), #info-logo p:nth-child(4)  {
+	font-size: 12px;
+}
+
+/* Div de mensagens ao usuario */
+.mensagem {
+	margin-right: auto;
+	margin-left: auto;
+
+	background-color: #660000;
+
+	color: #FFFFFF;
+
+	width: 300px;
+	height: 23px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	padding: 20px;
+	padding-left: 80px;
+
+	background-image: url(../img/warning.png);
+	background-repeat: no-repeat;
+	background-position: 18px 18px;
+}
+
+.mensagem label {
+	color: #660000;
+}
+
+/* Menu lateral */
+#menu-lateral {
+	position: absolute;
+	left: 10px;
+	top: 100px;
+	z-index: 9999;
+	background-color: none !important;
+	background-image: none !important;
+	margin: 0px !important;
+}
+
+#menu-lateral.ui-widget-content {
+	background: none !important;
+}
+#menu-lateral li {
+	list-style: none;
+}
+
+#menu-lateral li a {
+	font-family: 'Open Sans' !important;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
+	width: 100px;
+	height: 20px;
+	background-color: #393939;
+	font-size: 0.75rem !important;
+	font-style: italic;
+	font-weight: 100 !important;
+	margin: 0px !important;
+	border: none !important;
+	border-bottom-style: solid !important;
+	border-bottom-width: 1px !important;
+	border-bottom-color: #FFFFFF !important;
+	border-top-style: none !important; 
+	padding-top: 60px;
+}
+
+#menu-lateral li a:hover {
+	border-style: none !important;
+	background-color: #3671A4 !important;
+	border-top-style: none !important;
+	border-bottom-style: solid !important;
+	border-bottom-width: 1px !important;
+	border-bottom-color: #FFFFFF !important;
+}
+
+#menu-lateral li a[data-nav="home"] {
+	background-image: url(../img/home_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="57"] {
+	background-image: url(../img/cadastro_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="27"] {
+	background-image: url(../img/estoque_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="38"] {
+	background-image: url(../img/venda_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="42"] {
+	background-image: url(../img/financeiro_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="87"] {
+	background-image: url(../img/pessoal_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="68"] {
+	background-image: url(../img/relatorios_ico.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="6"] {
+	background-image: url(../img/config.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+#menu-lateral li a[data-nav="149"] {
+	background-image: url(../img/manutencao.png);
+	background-repeat: no-repeat;
+	background-position: 37px 20px;
+}
+
+.link-sair {
+	display: block;
+	width: 25px;
+	height: 30px;
+	background-image: url(../img/power.png);
+	background-repeat: no-repeat;
+
+	position: fixed;
+	right: 80px;
+	top: 50px;
+}
+
+.div-link-sair {
+	position: fixed;
+	right: 80px;
+	top: 100px;
+	background-color: #393939;
+	color: #000000;
+}
+
+.div-link-sair nav li {
+	list-style: none;
+}
+
+.div-link-sair nav li a {
+	display: block;
+	height: 25px;
+	padding: 20px;
+	width: 120px;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-align: right;
+
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #FFFFFF;
+}
+
+.div-link-sair nav li a:hover {
+	background-color: #3671A4;
+}
+
+.div-link-sair nav li a[data-value="sair"]  {
+	background-image: url(../img/power_branco.png);
+	background-repeat: no-repeat;
+	background-position: 18px 18px;
+}
+
+.div-link-sair nav li a[data-value="trocar-loja"]  {
+	background-image: url(../img/trocar.png);
+	background-repeat: no-repeat;
+	background-position: 18px 18px;
+}
+#box-acesso-rapido {
+	position: fixed;
+	top: 40px;
+	left: 330px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#box-acesso-rapido label {
+	position: absolute;
+	top: -15px;
+	left: -8px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 0.8rem;
+}
+
+#box-acesso-rapido input[type="text"] {
+	position: relative;
+	width: 300px;
+	font-size: 1rem;
+	top: 5px;
+	font-weight: 600;
+}
+#box-acesso-rapido input[type="text"]:focus {
+	background-color: #ffffcc;
+}
+
+#box-acesso-rapido button {
+	display: none;
+	position: relative;
+	background-image: url(../img/proximo.png);
+	background-repeat: no-repeat;
+	background-position: 55px 12px;
+	padding-right: 40px;
+}
+
+footer {
+	position: absolute;
+	top: 900px;
+
+	left: 50%;
+	margin-left: -400px;
+	width: 800px;
+	display: block;
+
+	font-size: 0.75rem;
+	font-style: italic;
+	text-align: center;
+
+}
+
+#div-loading-bar {
+	width: 150px;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	background-image: url(../img/loading.gif);
+}
+
+/**********************************************
+ *  SECAO PARA ESTILIZAR COMPONENTES JQUERYUI *
+ **********************************************/
+
+ /*
+
+ui-dialog: The outer container of the dialog.
+ui-dialog-titlebar: The title bar containing the dialog's title and close button.
+ui-dialog-title: The container around the textual title of the dialog.
+ui-dialog-titlebar-close: The dialog's close button.
+ui-dialog-content: The container around the dialog's content. This is also the element the widget was instantiated with.
+ui-dialog-buttonpane: The pane that contains the dialog's buttons. This will only be present if the buttons option is set.
+ui-dialog-buttonset: The container around the buttons themselves.
+
+
+ui-widget-overlay: ??;
+ui-front: ???;
+
+ */
+
+/* 
+	ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close
+*/
+/* Esconde o botao fechar do dialog */
+.ui-dialog-titlebar-close {
+	display: none;
+}
+
+.ui-front {
+	z-index: 100;
+}
+
+.ui-dialog-titlebar {
+	padding: .4em 1em;
+  	position: relative;
+  	cursor: move;
+  	height: 1.4rem;
+  	background-color: #333333;
+	color: #FFFFFF;
+}
+
+.ui-dialog-title {
+	float: left;
+	margin: .2em 0;
+	margin-left: 10px;
+	white-space: nowrap;
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	font-style: italic;
+}
+
+.ui-widget-overlay {
+	background: #aaaaaa /*{bgColorOverlay}*/ url(../jquery-ui/images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
+	opacity: .3/*{opacityOverlay}*/;
+	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/;
+}
+
+.ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.ui-widget-shadow {
+	margin: -8px/*{offsetTopShadow}*/ 0 0 -8px/*{offsetLeftShadow}*/;
+	padding: 8px/*{thicknessShadow}*/;
+	background: #aaaaaa/*{bgColorShadow}*/ url(images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlShadow}*/ 50%/*{bgShadowXPos}*/ 50%/*{bgShadowYPos}*/ repeat-x/*{bgShadowRepeat}*/;
+	opacity: .3/*{opacityShadow}*/;
+	filter: Alpha(Opacity=30)/*{opacityFilterShadow}*/;
+	border-radius: 8px/*{cornerRadiusShadow}*/;
+}
+
+.ui-dialog-content {
+	padding: 1em 1em;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}
+
+.ui-widget-header {
+	/*border: 1px solid #4297d7;*/
+}
+
+.ui-dialog-buttonpane {
+	text-align: center;
+	border-width: 1px 0 0 0;
+	background-image: none;
+	margin-top: .5em;
+	padding: .3em 1em .5em .4em;
+}
+
+.ui-dialog {
+	font-size: .8rem;
+	background-color: #FFFFFF;
+	text-align: center;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.5);
+	box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.5);
+}
+
+.ui-tooltip {
+	padding: 10px !important;
+	padding-left: 40px !important;
+	color: #333 !important;
+	
+	font-size: 0.8rem !important;
+	font-style: italic !important;
+
+	position: absolute;
+	
+	white-space: nowrap; 
+	z-index: 20px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	border: solid 1px #cccccc;
+	
+	-webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.5);
+	box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.5);	
+
+	text-transform: none !important;
+
+	background-color: #ffffcc;
+
+	background-image: url(../img/tip.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: 10px 10px !important;
+}
+
+.ui-tooltip-content {
+	
+}
+
+/* SECAO DE HELPERS (HACK'S) */
+
+.ui-helper-hidden {
+	display: none;
+}
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.ui-helper-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.ui-helper-clearfix:after {
+	clear: both;
+}
+.ui-helper-clearfix {
+	min-height: 0; /* support: IE7 */
+}
+.ui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0);
+}
+
+.ui-front {
+	z-index: 100;
+}
+
+/*******************************
+* SECAO CLASSES MENU JQUERY UI *
+********************************/
+/*
+ui-menu: The outer container of the menu. This element will additionally have a ui-menu-icons class if the menu contains icons.
+ui-menu-item: The container for individual menu items.
+ui-menu-icon: The submenu icons set via the icons option.
+ui-menu-divider: Divider elements between menu items.
+*/
+.ui-menu {
+	list-style: none;
+	padding: 2px;
+	margin: 0;
+	display: block;
+	outline: none;
+}
+
+.ui-corner-all {
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;
+}
+
+.ui-widget-content {
+	border: none !important;
+}
+
+.ui-menu .ui-menu {
+	margin-top: -3px;
+	position: absolute;
+}
+
+.ui-menu-item [data-top-level="false"] a {
+	padding: 10px !important;
+	padding-left: 40px !important;
+	padding-top: 12px !important;
+	width: 220px !important;
+	text-align: left !important;
+	position: relative;
+	/*left: -100px;*/
+	top: 0px;
+
+	background-image: url(../img/dot.png);
+	background-repeat: no-repeat;
+	background-position: 10px 12px;
+
+	z-index: 999;
+}
+
+.ui-menu-divider {
+	display: none;
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
+	width: 180px;
+	height: 20px;
+	background-color: #393939;
+	font-size: 0.75rem;
+	font-style: italic;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #FFFFFF;
+	padding-top: 7px !important;
+	width: 220px !important;
+	text-align: left !important;
+	padding-left: 10px !important;
+}
+
+.ui-autocomplete  .ui-menu-item a {
+	text-decoration: none;
+	display: block;
+	padding: 2px .4em;
+	line-height: 1.5;
+	min-height: 0; /* support: IE7 */
+	font-weight: normal;
+}
+
+.ui-autocomplete {
+	background-color: #FFFFFF
+}
+
+.ui-menu .ui-menu-item a {
+	display: block;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	background-color: #666666;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+	background-color: #ffffff;
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+	color: #212121;
+	text-decoration: none;
+}
+
+.custom-combobox-toggle {
+	height: 28px !important;
+	margin-top: -2px;
+}
+
+.custom-combobox-input {
+	font-size: 1em !important;
+	-moz-border-radius-topright: 0px !important;
+	-webkit-border-top-right-radius: 0px !important;
+	border-top-right-radius: 0px !important;
+	-moz-border-radius-bottomright: 0px !important;
+	-webkit-border-bottom-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+}
+
+/************************
+* FIM SECAO JQUERY CSS  *
+*************************/
+

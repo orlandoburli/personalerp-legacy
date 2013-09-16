@@ -1,0 +1,80 @@
+PROJETO MIGRAÇÃO
+
+- Cadastros 
+	- Clientes / Fornecedores
+
+- Estoques
+	- Configurações (Estoque)
+		- Unidades (MIGRADO)
+		- Fabricantes
+		- Grupos (MIGRADO)
+		- SubGrupos
+		- Modelos de Etiqueta
+	- Produtos (MIGRADO)
+	- Entrada de Estoque
+	- Levantamento de Estoque
+	- Transferências
+	- Notas de Entrada
+	- Impressão de Etiquetas
+
+- Vendas
+	- Configurações (Vendas)
+		- Operações de Nota Fiscal
+		- Tributações
+		- Tipos de Tributação
+		- Vendedores
+		- Planos de Pagamento
+		- Caixas
+		- Metas
+	- Pedidos
+	- Trocas de Mercadorias
+	- Notas Fiscais de Saída
+	- Vendas Diárias (NÃO VOU MIGRAR)
+
+- Financeiro
+	- Configurações (Financeiro)
+		- Tipos de Documento
+		- Planos de Contas
+		- Tipos de Planos de Conta
+		- Centros de Custo
+		- Portadores
+		- Contas Resumo
+		- Distribuição de Custo
+	- A pagar
+		- Contas a Pagar
+		- Pagar Contas
+		- Cheques Emitidos
+	- A receber
+		- Contas a Receber
+		- Recebimento de Contas
+		- Recebimento de Cartões
+		- Cheques Recebidos
+	- Recibos Avulsos
+	- Banco
+		- Contas Bancárias
+	- Processamento de Vendas / Financeiro (NAO VOU MIGRAR)
+
+- Manutenção (NAO VOU MIGRAR)
+	- Configurações (Manutenção)
+		- Tipos de Flag de Manutenção
+		- Situações de Troca de Manutenção
+	- Trocas / Manutenção
+
+- Pessoal
+	- Configurações (Pessoal)
+		- CBO
+		- Cargos
+		- Motivos de Desligamento
+		- Horários de Trabalho
+		- Motivos de Falta de Funcionário
+		- Verbas
+		- Tabela de Alíquotas (INSS)
+		- Tabela de Alíquotas (IRRF)
+	- Feriados
+	- Funcionários
+	- Faltas
+	- Vales para Funcionários
+	- Folha de Pagamento
+
+- Relatórios
+	- 

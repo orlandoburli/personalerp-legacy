@@ -1,0 +1,252 @@
+#conteudo-formularios {
+	position: absolute;
+	top: 100px;
+	left: 140px;
+}
+
+#conteudo-formularios .TituloTela {
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 1rem;
+}
+
+#conteudo-formularios .FormularioGeral {
+	margin-top: 10px;
+	width: 800px;
+	
+	padding: 15px;
+	
+	font-size: 1rem;
+	background-color: #E0E0E0;
+	
+	border-color: #D9D9D9;
+	border-style: solid;
+	border-width: 1px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#conteudo-formularios .FormularioGeral fieldset {
+	border: none;
+	display: inline-block;
+}
+
+#conteudo-formularios .FormularioGeral fieldset legend {
+	font-size: 0.9rem;
+	margin-bottom: -1px;
+	font-style: italic;
+}
+
+#conteudo-formularios .FormularioGeral fieldset input, #conteudo-formularios .FormularioGeral fieldset textarea  {
+	font-weight: 100;
+	font-family: 'Open Sans';
+	font-size: .8rem !important;
+	color: #000000;
+	
+	border-color: #BCBCBC;
+	border-style: solid;
+	border-width: 1px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+
+	background-color: #FFFFFF;
+	background-image: none !important;
+
+	width: 200px;
+}
+
+#conteudo-formularios .FormularioGeral fieldset input.custom-combobox-input {
+	width: 160px;
+}
+
+#conteudo-formularios .FormularioGeral fieldset input:focus, #conteudo-formularios .FormularioGeral fieldset textarea:focus {
+	background-color: #ffffcc;
+	background-image: none !important;
+}
+
+#conteudo-formularios .FormularioGeral fieldset input:disabled {
+	background-color: #CDCDCD;
+}
+
+/* Classes Relativas aos botoes */
+#conteudo-formularios .FormularioBotoes {
+	text-align: center;
+}
+
+#conteudo-formularios .FormularioBotoes button{
+	margin: 10px;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoSalvar {
+	padding-left: 50px;
+	background-image: url(../img/salvar.png);
+	background-repeat: no-repeat;
+	background-position: 15px 12px;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoNovo {
+	padding-left: 50px;
+	background-image: url(../img/novo.png);
+	background-repeat: no-repeat;
+	background-position: 15px 12px;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoNovo:first-letter {
+	text-decoration: underline;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoExcluir {
+	padding-left: 50px;
+	background-image: url(../img/excluir.png);
+	background-repeat: no-repeat;
+	background-position: 15px 13px;
+	background-color: #D44C52;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoExcluir:hover {
+	background-color: #4B6139;
+}
+
+
+
+#conteudo-formularios .FormularioBotoes button.BotaoVoltar {
+	padding-left: 50px;
+	background-image: url(../img/voltar.png);
+	background-repeat: no-repeat;
+	background-position: 15px 11px;
+	background-color: #393939;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoVoltar:hover, #conteudo-formularios .FormularioBotoes button.BotaoEditar:hover {
+	background-color: #4B6139;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoEditar {
+	padding-left: 50px;
+	background-image: url(../img/editar.png);
+	background-repeat: no-repeat;
+	background-position: 15px 11px;
+	background-color: #393939;
+}
+
+#conteudo-formularios .FormularioBotoes button.BotaoEditar:first-letter {
+	text-decoration: underline;
+}
+
+#conteudo-formularios #PesquisarPor {
+	width: 490px;
+}
+
+#conteudo-formularios button.BotaoPesquisar {
+	padding-left: 50px;
+	background-image: url(../img/pesquisar.png);
+	background-repeat: no-repeat;
+	background-position: 15px 11px;
+	background-color: #393939;
+}
+
+#conteudo-formularios button.BotaoPesquisar:hover {
+	background-color: #4B6139;
+}
+
+#conteudo-formularios .FormularioBotoesNavegacaoGrid button {
+	height: 40px;
+	width: 50px;
+}
+
+#conteudo-formularios button.BotaoNavegacaoPrimeiro {
+	background-image: url(../img/anterior.png), url(../img/anterior.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: 12px 7px, 22px, 6px;
+}
+
+#conteudo-formularios button.BotaoNavegacaoAnterior {
+	background-image: url(../img/anterior.png);
+	background-repeat: no-repeat;
+	background-position: 16px, 6px;
+}
+
+#conteudo-formularios button.BotaoNavegacaoProximo {
+	background-image: url(../img/proximo.png);
+	background-repeat: no-repeat;
+	background-position: 19px, 6px;
+}
+
+#conteudo-formularios button.BotaoNavegacaoUltimo {
+	background-image: url(../img/proximo.png), url(../img/proximo.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: 14px 7px, 24px, 6px;
+}
+
+/* Classes relativas ao datagrid */
+#conteudo-formularios .DataGridConsulta {
+	margin: 10px;
+	padding: 5px;
+	height: 350px;
+}
+
+#conteudo-formularios .DataGridConsulta table {
+	font-size: .9rem;
+	width: 100%;
+	font-style: italic;
+	border-collapse: collapse;
+	table-layout:fixed;
+}
+
+#conteudo-formularios .DataGridConsulta table tfoot {
+	position: absolute;
+	bottom: 125px;
+}
+
+#conteudo-formularios .DataGridConsulta tbody tr {
+	cursor: pointer;
+}
+
+#conteudo-formularios .DataGridConsulta tbody tr td {
+	padding: 5px;
+	overflow:hidden; 
+	white-space:nowrap;
+}
+
+#conteudo-formularios .DataGridConsulta tbody tr:hover td {
+	background-color: #ffffcc;
+	color: #000000;
+}
+
+/* Linhas impares da table */
+#conteudo-formularios .DataGridConsulta tbody tr[data-selected="false"]:nth-child(odd) {
+	background-color: #FFFFFF;
+}
+
+/* Linhas pares da table */
+#conteudo-formularios .DataGridConsulta tbody tr[data-selected="false"]:nth-child(even) {
+	background-color: #cccccc;
+}
+
+#conteudo-formularios .DataGridConsulta thead {
+	background-color: #333333;
+	color: #FFFFFF;
+}
+
+#conteudo-formularios .DataGridConsulta thead td {
+	padding: 5px;
+}
+
+#conteudo-formularios .DataGridConsulta tr[data-selected="true"] {
+	background-color: #3671A4;
+	color: #FFFFFF;
+}
+
+#conteudo-formularios .DataGridConsulta tr[data-selected="true"]:hover td { 
+	background-color: #3671A4;
+	color: #000000;
+}
+
+/* Regras especiais para telas de cadastro */
+
+

@@ -1,0 +1,12 @@
+package br.com.orlandoburli.core.be.exceptions.persistence;
+
+import br.com.orlandoburli.core.be.exceptions.BaseBeException;
+
+public class SalvarBeException extends BaseBeException {
+
+	private static final long serialVersionUID = 1L;
+	
+	public SalvarBeException(String message) {
+		super(message);
+	}
+}

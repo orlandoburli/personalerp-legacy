@@ -1,0 +1,74 @@
+[
+    {
+        "CodigoEmpresa": 1,
+        "CodigoLoja": 1,
+        "CodigoObjeto": 34,
+        "CodigoPerfil": 1,
+        "DescricaoObjeto": "Tela de Consulta de Produtos",
+        "NomeObjeto": "produtoconsulta.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    },
+    {
+        "CodigoEmpresa": 1,
+        "CodigoLoja": 1,
+        "CodigoObjeto": 36,
+        "CodigoPerfil": 1,
+        "DescricaoObjeto": "Tela de Cadastro de Produtos",
+        "NomeObjeto": "produtocadastro.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    },
+    {
+        "CodigoEmpresa": 1,
+        "CodigoEmpresaUsuarioLog": 1,
+        "CodigoLoja": 1,
+        "CodigoLojaUsuarioLog": 1,
+        "CodigoObjeto": 177,
+        "CodigoPerfil": 1,
+        "CodigoUsuarioLog": 24,
+        "DescricaoObjeto": "Tela de Consulta de Sub Produtos",
+        "NomeObjeto": "subprodutoconsulta.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    },
+    {
+        "CodigoEmpresa": 1,
+        "CodigoEmpresaUsuarioLog": 1,
+        "CodigoLoja": 1,
+        "CodigoLojaUsuarioLog": 1,
+        "CodigoObjeto": 178,
+        "CodigoPerfil": 1,
+        "CodigoUsuarioLog": 24,
+        "DescricaoObjeto": "Tela de Cadastro de Sub Produtos",
+        "NomeObjeto": "subprodutocadastro.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    },
+    {
+        "CodigoEmpresa": 1,
+        "CodigoEmpresaUsuarioLog": 1,
+        "CodigoLoja": 1,
+        "CodigoLojaUsuarioLog": 1,
+        "CodigoObjeto": 327,
+        "CodigoPerfil": 1,
+        "CodigoUsuarioLog": 30,
+        "DescricaoObjeto": "Tela de Cadastro de Linha de Produtos",
+        "NomeObjeto": "linhaprodutocadastro.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    },
+    {
+        "CodigoEmpresa": 1,
+        "CodigoEmpresaUsuarioLog": 1,
+        "CodigoLoja": 1,
+        "CodigoLojaUsuarioLog": 1,
+        "CodigoObjeto": 328,
+        "CodigoPerfil": 1,
+        "CodigoUsuarioLog": 30,
+        "DescricaoObjeto": "Tela de Consulta de Linha de Produtos",
+        "NomeObjeto": "linhaprodutoconsulta.action",
+        "NomePerfil": "Administrador",
+        "isNew": false
+    }
+]

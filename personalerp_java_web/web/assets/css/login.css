@@ -1,0 +1,90 @@
+/* Posicionamento da logo ao centro - somente na tela de login */
+#content-logo {
+	margin: 30px auto;
+}
+
+/* Posicionamento do formularop de login */
+.form {
+	clear: both;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: 50px;
+}
+
+/* Fundo e arredondamento do header do formulario */
+.form-header {
+	background-color: #444444;
+	height: 30px;
+
+	-moz-border-radius-topleft: 8px;
+	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius: 8px;
+
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: 600;
+	padding-top: 10px;
+}
+
+/* Definicao do conteudo do formulario */
+.form-content {
+	background-color: #FFFFFF;
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	padding-top: 20px;
+}
+
+.form-content p {	
+	margin: 10px;
+}
+
+.form-content label {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	margin-right: 20px;
+}
+
+.form-content select {
+	width: 250px;
+}
+
+.form-loading-content label {
+	width: 100%;
+	text-align: center;
+}
+
+.form-bottom {
+	height: 40px;
+	background-color: #3671A4;
+
+	-moz-border-radius-bottomleft: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.form-botoes {
+	text-align: center;
+	padding-top: 20px;
+}
+
+.form-botoes button {
+	margin: 10px auto;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#form-mensagem {
+	position: relative;
+	top: 80px;
+}
