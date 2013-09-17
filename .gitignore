@@ -1,2 +1,3 @@
-
 *.class
+personalerp_java_web/work/*
+personalerp_java_web/WEB-INF/classes/*

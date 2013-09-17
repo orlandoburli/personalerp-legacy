@@ -24,7 +24,6 @@ public abstract class BaseDAO {
 		return ConnectionFactory.getFactory().getConnection();
 	}
 
-
 	public void commit() throws SQLException {
 		ConnectionFactory.getFactory().commit();
 	}
@@ -32,16 +31,6 @@ public abstract class BaseDAO {
 	public void rollback() throws SQLException {
 		ConnectionFactory.getFactory().rollback();
 	}
-
-//	public void mergeDAO(BaseDAO anotherDao) throws SQLException {
-//		try {
-//			anotherDao.setAutoCommit(false);
-//			this.connection = anotherDao.getConnection();
-//			this.setAutoCommit(false);
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	protected ResultSet getResult(String statement, Connection conn) throws ClassNotFoundException, SQLException {
 		ResultSet result = null;

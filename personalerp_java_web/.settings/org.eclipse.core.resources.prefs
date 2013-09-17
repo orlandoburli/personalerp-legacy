@@ -3,6 +3,7 @@ encoding//WEB-INF/src/br/com/orlandoburli/Constants.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/be/exceptions/persistence/DesfazerBeException.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/be/utils/ValidatorUtils.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/dao/BaseCadastroDAO.java=UTF-8
+encoding//WEB-INF/src/br/com/orlandoburli/core/dao/ConnectionFactory.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/utils/Utils.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/utils/cripto/AlgoritmoCriptografia.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/vo/AutoIncrement.java=UTF-8
