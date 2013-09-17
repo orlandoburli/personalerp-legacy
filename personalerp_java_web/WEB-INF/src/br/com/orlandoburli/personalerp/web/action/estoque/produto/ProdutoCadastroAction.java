@@ -26,7 +26,7 @@ public class ProdutoCadastroAction extends BaseCadastroAction<ProdutoVO, Produto
 	private static final long serialVersionUID = 1L;
 	
 	@Override
-	public void doBeforeLoad(HttpServletRequest request, HttpServletResponse response, ProdutoVO vo, ProdutoBe be) {
+	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, ProdutoVO vo, ProdutoBe be) {
 		
 		try {
 			
@@ -46,7 +46,7 @@ public class ProdutoCadastroAction extends BaseCadastroAction<ProdutoVO, Produto
 			e.printStackTrace();
 		}
 		
-		super.doBeforeLoad(request, response, vo, be);
+		super.doBeforeVisualizar(request, response, vo, be);
 	}
 	
 	@Override

@@ -1,7 +1,6 @@
 package br.com.orlandoburli.core.web.framework.action;
 
 import java.lang.reflect.ParameterizedType;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,11 @@ import com.google.gson.Gson;
 
 import br.com.orlandoburli.core.be.BaseBe;
 import br.com.orlandoburli.core.be.exceptions.list.ListException;
+import br.com.orlandoburli.core.be.exceptions.persistence.AlterarBeException;
+import br.com.orlandoburli.core.be.exceptions.persistence.ConfirmarBeException;
+import br.com.orlandoburli.core.be.exceptions.persistence.DesfazerBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.ExcluirBeException;
+import br.com.orlandoburli.core.be.exceptions.persistence.InserirBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.SalvarBeException;
 import br.com.orlandoburli.core.dao.BaseCadastroDAO;
 import br.com.orlandoburli.core.dao.DaoUtils;
@@ -35,14 +38,14 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 
 	private EmpresaVO empresasessao;
 	private LojaVO lojasessao;
-	
+
 	private UsuarioVO usuariosessao;
-	
+
 	private boolean writeVoOnInsert = false;
 	private boolean writeVoOnUpdate = false;
-	
+
 	private String operacao;
-	
+
 	private String term;
 
 	protected Class<?> getDAOClass() {
@@ -92,35 +95,52 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 	}
 
 	public void inserir() {
+		E vo = getNewVo();
+		G be = getNewBe();
 
 		try {
-			E vo = getNewVo();
-			G be = getNewBe();
-			
+
 			injectVo(vo);
 
-			doBeforeInsert(vo);
+			doBeforeInserir(vo);
 			doBeforeSave(vo);
 
 			be.inserir(vo);
-			
-			doAfterInsert();
-			doAfterSave();
-			
-			write(new Gson().toJson(new RetornoAction(true, "Registro inserido com sucesso!", "")));
-			
-		} catch (SalvarBeException e) {
-			write(new Gson().toJson(new RetornoAction(false, e.getMessage(), e.getCampo())));
-		}
 
+			doAfterInserir(vo);
+			doAfterSalvar(vo);
+
+			be.confirmar();
+
+			write(new Gson().toJson(new RetornoAction(true, "Registro inserido com sucesso!")));
+
+		} catch (SalvarBeException e) {
+
+			try {
+				be.desfazer();
+			} catch (DesfazerBeException e1) {
+				write(new Gson().toJson(new RetornoAction(false, e1.getMessage())));
+				return;
+			}
+
+			write(new Gson().toJson(new RetornoAction(false, e.getMessage(), e.getCampo())));
+		} catch (ConfirmarBeException e) {
+			write(new Gson().toJson(new RetornoAction(false, e.getMessage())));
+		}
 	}
 
 	public void alterar() {
 		try {
 			E vo = getNewVo();
 			G be = getNewBe();
+			
+			doBeforeAlterar(vo);
+			doBeforeSalvar(vo);
 
 			injectVo(vo);
+			
+			doAfterAlterar(vo);
+			doAfterSalvar(vo);
 
 			be.alterar(vo);
 
@@ -130,16 +150,20 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 			write(new Gson().toJson(new RetornoAction(false, e.getMessage(), e.getCampo())));
 		}
 	}
-	
+
 	public void excluir() {
 		try {
 			E vo = getNewVo();
 			G be = getNewBe();
+			
+			doBeforeExcluir(vo);
 
 			injectVo(vo);
+			
+			doAfterExcluir(vo);
 
 			be.excluir(vo);
-			
+
 			write(new Gson().toJson(new RetornoAction(true, "Registro excluído com sucesso!", "")));
 
 		} catch (ExcluirBeException e) {
@@ -156,7 +180,7 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 
 			injectVo(vo);
 
-			doBeforeLoad(getRequest(), getResponse(), vo, be);
+			doBeforeVisualizar(getRequest(), getResponse(), vo, be);
 
 			vo = be.get(vo);
 
@@ -188,8 +212,8 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 		}
 	}
 
-	public void doBeforeLoad(HttpServletRequest request, HttpServletResponse response, E vo, G be) {
-		
+	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, E vo, G be) {
+
 	}
 
 	public void doBeforeWriteVo(E vo) {
@@ -199,11 +223,33 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 		visualizar();
 	}
 
-	public boolean doBeforeUpdate(E vo) throws SQLException {
+	public boolean doBeforeDelete(E vo) throws ExcluirBeException {
+		// Verifica se o vo tem alguma chave nula
+		if (DaoUtils.hasNullKey(vo)) {
+			return false;
+		}
 		return true;
 	}
+//
+//	/**
+//	 * Sobreescreva este método para tratar qualquer exceção de sql na
+//	 * alteracao, exclusao, inclusao ou alteracao
+//	 * 
+//	 * @param ex
+//	 *            Excecao disparada
+//	 */
+//	public void doBeforeWriteSqlErro(Exception e) {
+//		if (messages.size() <= 0) {
+//			writeErrorMessage(e.getMessage());
+//		} else {
+//			write(Utils.voToXml(messages));
+//		}
+//	}
 
-	public boolean doBeforeInsert(E vo) {
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas apos inserir um registro
+	 */
+	public void doAfterInserir(E vo) throws InserirBeException {
 		// Chave padrao
 		if (Utils.getproperty(vo, "CodigoEmpresa") == null || Utils.getproperty(vo, "CodigoEmpresa").equals(0)) {
 			InjectionFilter.setproperty(vo, "CodigoEmpresa", getEmpresasessao().getCodigoEmpresa());
@@ -211,52 +257,59 @@ public abstract class BaseCadastroAction<E extends IValueObject, F extends BaseC
 		if (Utils.getproperty(vo, "CodigoLoja") == null || Utils.getproperty(vo, "CodigoLoja").equals(0)) {
 			InjectionFilter.setproperty(vo, "CodigoLoja", getLojasessao().getCodigoLoja());
 		}
-		return true;
-	}
-
-	public boolean doBeforeDelete(E vo) {
-		// Verifica se o vo tem alguma chave nula
-		if (DaoUtils.hasNullKey(vo)) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
-	 * Sobreescreva este método para tratar qualquer exceção de sql na
-	 * alteracao, exclusao, inclusao ou alteracao
-	 * 
-	 * @param ex
-	 *            Excecao disparada
+	 * Sobrescrever o metodo para operacoes realizadas apos alterar um registro
 	 */
-	public void doBeforeWriteSqlErro(Exception e) {
-		if (messages.size() <= 0) {
-			writeErrorMessage(e.getMessage());
-		} else {
-			write(Utils.voToXml(messages));
-		}
+	public void doAfterAlterar(E vo) throws AlterarBeException {
+
 	}
 
 	/**
-	 * Sobrescrever o metodo para operacoes realizadas apos inserir um registro
+	 * Sobrescrever o metodo para operacoes relalizadas apos inserir ou alterar
+	 * um registro
 	 */
-	public void doAfterInsert() {
+	public void doAfterSalvar(E vo) throws SalvarBeException {
 
 	}
 
-	public void doAfterUpdate() {
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas apos excluir um registro
+	 */
+	public void doAfterExcluir(E vo) throws ExcluirBeException {
 
 	}
 
-	public void doAfterSave() {
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas antes de inserir um
+	 * registro
+	 */
+	public void doBeforeInserir(E vo) throws InserirBeException {
 
 	}
 
-	public void doAfterDelete() {
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas antes de alterar um
+	 * registro
+	 */
+	public void doBeforeAlterar(E vo) throws AlterarBeException {
 
 	}
 
-	public void doAfterCommit(String operacao) {
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas antes de inserir ou
+	 * alterar um registro
+	 */
+	public void doBeforeSalvar(E vo) throws SalvarBeException {
+
+	}
+
+	/**
+	 * Sobrescrever o metodo para operacoes realizadas antes de excluir um
+	 * registro
+	 */
+	public void doBeforeExcluir(E vo) throws ExcluirBeException {
 
 	}
 

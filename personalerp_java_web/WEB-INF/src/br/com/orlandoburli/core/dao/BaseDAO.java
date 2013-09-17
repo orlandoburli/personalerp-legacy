@@ -2,14 +2,10 @@ package br.com.orlandoburli.core.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import javax.sql.rowset.CachedRowSet;
 
 import com.sun.rowset.CachedRowSetImpl;
@@ -21,84 +17,31 @@ public abstract class BaseDAO {
 	public static final String br = "\n";
 
 	private String lastMessage;
-	private boolean autoCommit = true;
-	private Connection connection;
 
 	public BaseDAO() {}
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		try {
-			if (isAutoCommit() || connection == null || connection.isClosed()) {
-				connection = getNewConnection();
-			}
-			return connection;
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return ConnectionFactory.getFactory().getConnection();
 	}
 
-	private Connection getNewConnection() throws ClassNotFoundException, SQLException, NamingException {
-		if (SystemManager.getProperty("db.type").equalsIgnoreCase("datasource")) {
-			InitialContext cxt = new InitialContext();
-
-			String dsName = SystemManager.getProperty("db.datasourcename");
-
-			DataSource ds = (DataSource) cxt.lookup(dsName);
-
-			if (ds == null) {
-				return null;
-			}
-			Connection conn = ds.getConnection();
-
-			conn.setAutoCommit(isAutoCommit());
-			if (conn.getMetaData().getDatabaseMajorVersion() >= 9) {
-				conn.prepareStatement("set application_name = 'PersonalERP';").execute();
-			}
-			return conn;
-		} else {
-			Class.forName(SystemManager.getProperty("db.classdriver"));
-			String url = "jdbc:postgresql://" + SystemManager.getProperty("db.host") + ":" + SystemManager.getProperty("db.port") + "/" + SystemManager.getProperty("db.database");
-			Connection conn = null;
-			conn = DriverManager.getConnection(url, SystemManager.getProperty("db.user"), SystemManager.getProperty("db.pass"));
-			conn.setAutoCommit(isAutoCommit());
-			return conn;
-		}
-	}
 
 	public void commit() throws SQLException {
-		if (connection != null) {
-			try {
-				connection.commit();
-				connection.close();
-				connection = null;
-			} catch (SQLException e) {
-				throw e;
-			}
-		}
+		ConnectionFactory.getFactory().commit();
 	}
 
-	public void rollback() {
-		if (connection != null) {
-			try {
-				connection.rollback();
-				connection.close();
-				connection = null;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+	public void rollback() throws SQLException {
+		ConnectionFactory.getFactory().rollback();
 	}
 
-	public void mergeDAO(BaseDAO anotherDao) throws SQLException {
-		try {
-			anotherDao.setAutoCommit(false);
-			this.connection = anotherDao.getConnection();
-			this.setAutoCommit(false);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void mergeDAO(BaseDAO anotherDao) throws SQLException {
+//		try {
+//			anotherDao.setAutoCommit(false);
+//			this.connection = anotherDao.getConnection();
+//			this.setAutoCommit(false);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	protected ResultSet getResult(String statement, Connection conn) throws ClassNotFoundException, SQLException {
 		ResultSet result = null;
@@ -118,9 +61,6 @@ public abstract class BaseDAO {
 		ResultSet result = getResult(statement, conn);
 		rowset.populate(result);
 		result.close();
-		if (isAutoCommit()) {
-			conn.close();
-		}
 		return rowset;
 	}
 
@@ -172,15 +112,8 @@ public abstract class BaseDAO {
 				if (SystemManager.getProperty("debug.sql").equalsIgnoreCase("true")) {
 					System.out.println("ERRO NO UPDATE!!!");
 				}
-				conn.prepareStatement("");
-				conn.rollback();
-				conn.close();
 				return false;
 			}
-		}
-		if (isAutoCommit()) {
-			conn.commit();
-			conn.close();
 		}
 		return sucesso;
 	}
@@ -216,13 +149,7 @@ public abstract class BaseDAO {
 			if (SystemManager.getProperty("debug.sql").equalsIgnoreCase("true") && SystemManager.getProperty("debug.sql.delete").equalsIgnoreCase("true")) {
 				System.out.println("ERRO NO DELETE!!!");
 			}
-			conn.rollback();
-			conn.close();
 			return false;
-		}
-		if (isAutoCommit()) {
-			conn.commit();
-			conn.close();
 		}
 		return sucesso;
 	}
@@ -242,13 +169,5 @@ public abstract class BaseDAO {
 
 	public String getLastMessage() {
 		return lastMessage;
-	}
-
-	public void setAutoCommit(boolean autoCommit) {
-		this.autoCommit = autoCommit;
-	}
-
-	public boolean isAutoCommit() {
-		return autoCommit;
 	}
 }

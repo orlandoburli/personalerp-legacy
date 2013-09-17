@@ -7,6 +7,11 @@ public class RetornoAction {
 	private String fieldFocus;
 	private String codigoRetorno;
 
+	public RetornoAction(boolean sucesso, String mensagem) {
+		this.sucesso = sucesso;
+		this.mensagem = mensagem;
+	}
+	
 	public RetornoAction(boolean sucesso, String mensagem, String fieldFocus) {
 		this.sucesso = sucesso;
 		this.mensagem = mensagem;

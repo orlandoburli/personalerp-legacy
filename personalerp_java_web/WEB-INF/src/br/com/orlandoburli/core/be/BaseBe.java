@@ -6,6 +6,8 @@ import java.util.List;
 
 import br.com.orlandoburli.core.be.exceptions.list.ListException;
 import br.com.orlandoburli.core.be.exceptions.persistence.AlterarBeException;
+import br.com.orlandoburli.core.be.exceptions.persistence.ConfirmarBeException;
+import br.com.orlandoburli.core.be.exceptions.persistence.DesfazerBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.ExcluirBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.InserirBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.SalvarBeException;
@@ -31,7 +33,6 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 
 	public void inserir(E vo) throws InserirBeException, SalvarBeException {
 		try {
-			getDao().setAutoCommit(false);
 			
 			doBeforeInserir(vo);
 			doBeforeSalvar(vo);
@@ -56,7 +57,6 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 
 	public void alterar(E vo, boolean validate) throws AlterarBeException, SalvarBeException {
 		try {
-			getDao().setAutoCommit(false);
 			
 			if (validate) {
 				doBeforeAlterar(vo);
@@ -81,7 +81,6 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 
 	public void excluir(E vo) throws ExcluirBeException {
 		try {
-			getDao().setAutoCommit(false);
 			
 			doBeforeExcluir(vo);
 
@@ -210,6 +209,24 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ListException();
+		}
+	}
+	
+	public void confirmar() throws ConfirmarBeException {
+		try {
+			getDao().commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ConfirmarBeException();
+		}
+	}
+	
+	public void desfazer() throws DesfazerBeException {
+		try {
+			getDao().rollback();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DesfazerBeException();
 		}
 	}
 

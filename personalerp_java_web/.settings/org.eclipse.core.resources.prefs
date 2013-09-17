@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WEB-INF/src/br/com/orlandoburli/Constants.java=UTF-8
+encoding//WEB-INF/src/br/com/orlandoburli/core/be/exceptions/persistence/DesfazerBeException.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/be/utils/ValidatorUtils.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/dao/BaseCadastroDAO.java=UTF-8
 encoding//WEB-INF/src/br/com/orlandoburli/core/utils/Utils.java=UTF-8
