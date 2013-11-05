@@ -18,7 +18,7 @@ public final class SystemManager {
 	public static Properties properties;
 	
 	public static String getProperty(String key) {
-		return properties.getProperty(key)==null?"":properties.getProperty(key);
+		return properties.getProperty(key);
 	}
 	
 	public static int getNumeroUsuariosLicenca(Integer CodigoEmpresa, Integer CodigoLoja) throws SQLException {

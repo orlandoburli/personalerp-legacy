@@ -33,10 +33,6 @@ public final class ConnectionFactory {
 	}
 
 	private Connection getNewConnection() throws ClassNotFoundException, SQLException, NamingException {
-		if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-			System.out.println("Retornando nova conexão");
-		}
-		
 		if (SystemManager.getProperty("db.type").equalsIgnoreCase("datasource")) {
 			InitialContext cxt = new InitialContext();
 
@@ -72,28 +68,15 @@ public final class ConnectionFactory {
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			e.printStackTrace();
 		}
-		
-		if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-			System.out.println("Retornando conexão");
-		}
 		return connection;
 	}
 
 	public void commit() throws SQLException {
-		
-		if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-			System.out.println("Executando commit na conexão");
-		}
-		
 		if (connection != null) {
 			try {
 				connection.commit();
 				connection.close();
 				connection = null;
-				
-				if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-					System.out.println("Conexão commitada e finalizada");
-				}
 			} catch (SQLException e) {
 				throw e;
 			}
@@ -101,19 +84,11 @@ public final class ConnectionFactory {
 	}
 
 	public void rollback() throws SQLException {
-		if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-			System.out.println("Executando rollback na conexão");
-		}
-		
 		if (connection != null) {
 			try {
 				connection.rollback();
 				connection.close();
 				connection = null;
-				
-				if (SystemManager.getProperty("debug.connection.factory").equalsIgnoreCase("true")) {
-					System.out.println("Rollback executado na conexão");
-				}
 			} catch (SQLException e) {
 				throw e;
 			}

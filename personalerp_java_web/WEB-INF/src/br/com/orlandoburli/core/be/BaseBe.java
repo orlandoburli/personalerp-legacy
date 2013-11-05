@@ -13,7 +13,6 @@ import br.com.orlandoburli.core.be.exceptions.persistence.InserirBeException;
 import br.com.orlandoburli.core.be.exceptions.persistence.SalvarBeException;
 import br.com.orlandoburli.core.be.utils.ValidatorUtils;
 import br.com.orlandoburli.core.dao.BaseCadastroDAO;
-import br.com.orlandoburli.core.dao.ConnectionFactory;
 import br.com.orlandoburli.core.vo.IValueObject;
 
 public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E>> {
@@ -45,6 +44,7 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 			doAfterInserir(vo);
 			doAfterSalvar(vo);
 
+			getDao().commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new InserirBeException("Erro ao inserir dados. Consulte o administrador do sistema.");
@@ -72,6 +72,7 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 				doAfterSalvar(vo);
 			}
 
+			getDao().commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new AlterarBeException("Erro ao alterar dados. Consulte o administrador do sistema.");
@@ -87,27 +88,10 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 
 			doAfterExcluir(vo);
 
+			getDao().commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ExcluirBeException("Erro ao excluir dados. Consulte o administrador do sistema.");
-		}
-	}
-	
-	public static void commit() throws ConfirmarBeException {
-		try {
-			ConnectionFactory.getFactory().commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new ConfirmarBeException();
-		}
-	}
-	
-	public static void rollback() throws DesfazerBeException {
-		try {
-			ConnectionFactory.getFactory().rollback();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DesfazerBeException();
 		}
 	}
 
@@ -137,7 +121,7 @@ public abstract class BaseBe<E extends IValueObject, F extends BaseCadastroDAO<E
 
 	public void doAfterExcluir(E vo) throws ExcluirBeException {
 	}
-	
+
 	public E get(E vo) throws ListException {
 		try {
 			return getDao().get(vo);

@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.orlandoburli.core.be.BaseBe;
-import br.com.orlandoburli.core.be.exceptions.persistence.ConfirmarBeException;
 import br.com.orlandoburli.core.utils.Utils;
 import br.com.orlandoburli.core.web.framework.action.BaseAction;
 import br.com.orlandoburli.core.web.framework.filters.AutorizathionFilter;
@@ -106,13 +104,6 @@ public class MainControllerServlet extends HttpServlet {
 
 			if (facade instanceof BaseAction) { // Processamento de Outjection
 				((BaseAction) facade).dispatch();
-			}
-			
-			// Ao final, tenta fechar os commit's pendentes
-			try {
-				BaseBe.commit();
-			} catch (ConfirmarBeException e) {
-				e.printStackTrace();
 			}
 
 		} catch (ClassNotFoundException e) {
